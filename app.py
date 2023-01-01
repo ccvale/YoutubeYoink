@@ -1,6 +1,5 @@
 import customtkinter as tk
 from YoutubeVideo import YoutubeVideo
-import time
 
 # not used; customtkinter doesnt like these colors for some reason
 class PASTEL_ENUM:
