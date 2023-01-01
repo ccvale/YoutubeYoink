@@ -1,5 +1,4 @@
 import customtkinter as tk
-from PIL import Image, ImageTk
 from YoutubeVideo import YoutubeVideo
 
 class ENUM:
