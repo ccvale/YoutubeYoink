@@ -12,6 +12,11 @@ class YoutubeVideo:
         self.url = url
         self.fileType = fileType
 
+        if self.fileType not in ['MP3', 'MP4']:
+            raise ValueError('Invalid file type for the expected operation. Please try again selecting an mp3 or mp4 file instead.')
+        else:
+            self.video = YouTube(self.url)
+
     def download(self, video: Stream):
         try:
             return video.download(self.DOWNLOAD_FOLDER)
@@ -24,19 +29,16 @@ class YoutubeVideo:
     def setFileType(self, choice):
         self.fileType = choice
 
+    def getTitle(self):
+        return self.video.title
+
 
     def convert(self):
-        print(self.url, self.fileType)
-        if self.fileType not in ['MP3', 'MP4']:
-            raise ValueError('Invalid file type for the expected operation. Please try again selecting an mp3 or mp4 file instead.')
-        else:
-            video = YouTube(self.url)
             if self.fileType == 'MP3':
-                of = self.download(video.streams.get_audio_only())
+                of = self.download(self.video.streams.get_audio_only())
                 base, ext = os.path.splitext(of)
                 new = base + '.mp3'
                 os.rename(of, new)
-
             else:
-                self.download(video.streams.get_highest_resolution())
+                self.download(self.video.streams.get_highest_resolution())
             
