@@ -23,10 +23,6 @@ class App(tk.CTk):
         self.geometry('600x450')
         self.resizable(False, False)
 
-        ico = Image.open('star.ico')
-        photo = ImageTk.PhotoImage(ico)
-        self.wm_iconphoto(False, photo)
-
         self.buttonText = tk.StringVar(value='Convert')
 
         # frame
